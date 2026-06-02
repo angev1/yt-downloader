@@ -141,7 +141,7 @@ def clean_error(message: str) -> str:
 
     if 'getaddrinfo failed' in clean_lower or 'network' in clean_lower:
         return "No internet connection."
-    if 'Video unavailable' in clean:
+    if 'Video unavailable' in clean_lower:
         return "The video is deleted or don't have access."
     if 'ffmpeg' in clean_lower or 'ffprobe' in clean_lower:
         return "FFmpeg is required for audio conversion. Install FFmpeg and add it to PATH."
