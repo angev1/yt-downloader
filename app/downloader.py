@@ -1,7 +1,7 @@
 from PySide6.QtCore import QThread, Signal
 
 import os
-import yt_dlp
+from yt_dlp import YoutubeDL, utils
 import json
 import re
 
@@ -126,9 +126,9 @@ class DownloadThread(QThread):
                 self.progress.emit(100)
         try:
             self.ydl_opts['progress_hooks'] = [progress_hook]            
-            with yt_dlp.YoutubeDL(self.ydl_opts) as ydl:
+            with YoutubeDL(self.ydl_opts) as ydl:
                 ydl.download([self.url])
-        except yt_dlp.utils.DownloadError as e:
+        except utils.DownloadError as e:
             self.error_signal.emit(clean_error(str(e)))
         except RuntimeError as e:
             self.error_signal.emit(str(e))

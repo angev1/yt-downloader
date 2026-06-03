@@ -1,4 +1,4 @@
-from .downloader import build_ydl_opts, get_text_dir, get_file_type, get_video_quality, is_valid_youtube_url
+﻿# from .downloader import build_ydl_opts, get_text_dir, get_file_type, get_video_quality, is_valid_youtube_url
 
 from PySide6.QtWidgets import (QMainWindow, QLabel, QPushButton, QWidget,
                                 QVBoxLayout, QHBoxLayout, QLineEdit, QFileDialog, QComboBox,
@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
+        from .downloader import get_text_dir, get_file_type, get_video_quality
         self.container = QWidget()
         self.container.setObjectName("container")
         self.setCentralWidget(self.container)
@@ -100,6 +101,7 @@ class MainWindow(QMainWindow):
             self.line_dir.setText(path)
 
     def start_thread(self):
+        from .downloader import get_text_dir, get_file_type, get_video_quality, is_valid_youtube_url, build_ydl_opts
         if self.thread is not None and self.thread.isRunning():
             return
 
